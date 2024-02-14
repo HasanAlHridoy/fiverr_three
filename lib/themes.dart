@@ -16,4 +16,6 @@ class AppColors {
   Color get buttonColor => const Color(0xFFBAE5FF);
 
   Color get inactiveButtonColor => const Color(0xFF43495F);
+
+  Color get borderColor => const Color(0xFFBAE5FF);
 }

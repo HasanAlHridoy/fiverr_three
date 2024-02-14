@@ -24,7 +24,7 @@ class CustomButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: bgColor,
         fixedSize: Size(Sizer().screenWidth(context), 50),
-        side: hasBorder == true ? BorderSide(width: 0.5, color: AppColors().textSubtitleColor) : BorderSide.none,
+        side: hasBorder == true ? BorderSide(width: 0.5, color: AppColors().borderColor) : BorderSide.none,
       ),
       child: Text(
         title,
