@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../themes.dart';
 
-class CutomPageTitle extends StatelessWidget {
+class CustomPageTitle extends StatelessWidget {
   final String title;
   final String subTitle;
 
-  const CutomPageTitle({
+  const CustomPageTitle({
     super.key,
     required this.title,
     required this.subTitle,
