@@ -4,8 +4,17 @@ import '../services/sizer.dart';
 import '../themes.dart';
 
 class CustomButton extends StatelessWidget {
+  final Color bgColor;
+  final bool hasBorder;
+  final String title;
+  final Color titleColor;
+
   const CustomButton({
     super.key,
+    required this.bgColor,
+    this.hasBorder = false,
+    required this.title,
+    required this.titleColor,
   });
 
   @override
@@ -13,13 +22,14 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {},
       style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors().buttonColor,
-          fixedSize: Size(Sizer().screenWidth(context), 50),
-          side: BorderSide(width: 0.5, color: AppColors().textSubtitleColor)),
+        backgroundColor: bgColor,
+        fixedSize: Size(Sizer().screenWidth(context), 50),
+        side: hasBorder == true ? BorderSide(width: 0.5, color: AppColors().textSubtitleColor) : BorderSide.none,
+      ),
       child: Text(
-        'Continue',
+        title,
         style: TextStyle(
-          color: AppColors().bgColor,
+          color: titleColor,
           fontWeight: FontWeight.w700,
           fontSize: 16,
         ),
