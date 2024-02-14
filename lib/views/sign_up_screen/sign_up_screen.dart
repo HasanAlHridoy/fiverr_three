@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 class CustomTextFeild extends StatefulWidget {
   bool isShowPassIcon;
   String lebelText;
-  CustomTextFeild(
-      {super.key, required this.isShowPassIcon, required this.lebelText});
+
+  CustomTextFeild({super.key, required this.isShowPassIcon, required this.lebelText});
+
   @override
   // ignore: library_private_types_in_public_api
   _CustomTextFeildState createState() => _CustomTextFeildState();
@@ -32,11 +33,7 @@ class _CustomTextFeildState extends State<CustomTextFeild> {
             decoration: InputDecoration(
               suffixIcon: widget.isShowPassIcon
                   ? IconButton(
-                      icon: Icon(
-                          _passwordVisible
-                              ? Icons.visibility_outlined
-                              : Icons.visibility_off,
-                          color: AppColors().textTitleColor),
+                      icon: Icon(_passwordVisible ? Icons.visibility_outlined : Icons.visibility_off, color: AppColors().textTitleColor),
                       onPressed: () {
                         setState(() {
                           _passwordVisible = !_passwordVisible;
@@ -47,16 +44,13 @@ class _CustomTextFeildState extends State<CustomTextFeild> {
               filled: true,
               fillColor: AppColors().inactiveButtonColor,
               hintText: widget.lebelText,
-              hintStyle: TextStyle(color: AppColors().textTitleColor),
+              hintStyle: TextStyle(color: AppColors().textSubtitleColor, fontSize: 14, fontWeight: FontWeight.w400),
               border: _isFocused
                   ? OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                          color: AppColors().borderColor, width: 0.4),
+                      borderSide: BorderSide(color: AppColors().borderColor, width: 0.4),
                     )
-                  : OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none),
+                  : OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
             ),
             onTap: () {
               setState(() {
