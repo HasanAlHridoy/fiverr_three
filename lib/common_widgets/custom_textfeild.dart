@@ -6,8 +6,11 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatefulWidget {
   bool isShowPassIcon;
   String labelText;
+  bool passwordVisible = true;
+  TextEditingController? controller;
+  Function(String e)? onChanged;
 
-  CustomTextField({super.key, required this.isShowPassIcon, required this.labelText});
+  CustomTextField({super.key, required this.isShowPassIcon, required this.labelText, this.controller, this.onChanged, required this.passwordVisible});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -16,21 +19,25 @@ class CustomTextField extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextField> {
   bool _isFocused = false;
-  bool _passwordVisible = false;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Sizer().screenHeight(context) * 0.25,
+      height: Sizer().screenHeight(context) * 0.06,
       width: Sizer().screenWidth(context),
       child: TextField(
+        controller: widget.controller,
+        cursorColor: AppColors().textTitleColor,
+        style: TextStyle(color: AppColors().textTitleColor),
+        obscureText: widget.passwordVisible,
         decoration: InputDecoration(
           suffixIcon: widget.isShowPassIcon
               ? IconButton(
-                  icon: Icon(_passwordVisible ? Icons.visibility_outlined : Icons.visibility_off, color: AppColors().textTitleColor),
+                  icon:
+                      Icon(widget.passwordVisible == false ? Icons.visibility_outlined : Icons.visibility_off, color: AppColors().textSubtitleColor),
                   onPressed: () {
                     setState(() {
-                      _passwordVisible = !_passwordVisible;
+                      widget.passwordVisible = !widget.passwordVisible;
                     });
                   },
                 )
@@ -38,19 +45,23 @@ class _CustomTextFieldState extends State<CustomTextField> {
           filled: true,
           fillColor: AppColors().inactiveButtonColor,
           hintText: widget.labelText,
-          hintStyle: TextStyle(color: AppColors().textTitleColor),
-          border: _isFocused
+          hintStyle: TextStyle(color: AppColors().textSubtitleColor, fontWeight: FontWeight.w400, fontSize: 14),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          focusedBorder: _isFocused
               ? OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: AppColors().borderColor, width: 0.4),
+                  borderSide: const BorderSide(color: Colors.white, width: 0.5),
                 )
-              : OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+              : InputBorder.none,
         ),
         onTap: () {
           setState(() {
             _isFocused = true;
           });
         },
+        onChanged: widget.onChanged,
         autofocus: false,
       ),
     );

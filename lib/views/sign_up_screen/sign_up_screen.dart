@@ -1,66 +1,128 @@
-import 'package:fiverr_three/services/sizer.dart';
-import 'package:fiverr_three/themes.dart';
+import 'package:fiverr_three/views/sign_in_screen/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
-class CustomTextFeild extends StatefulWidget {
-  bool isShowPassIcon;
-  String lebelText;
+import '../../common_widgets/credential_page_custom_top_section.dart';
+import '../../common_widgets/custom_button.dart';
+import '../../common_widgets/custom_card.dart';
+import '../../common_widgets/custom_page_title.dart';
+import '../../common_widgets/custom_rich_text.dart';
+import '../../common_widgets/custom_textfeild.dart';
+import '../../services/sizer.dart';
+import '../../themes.dart';
 
-  CustomTextFeild({super.key, required this.isShowPassIcon, required this.lebelText});
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _CustomTextFeildState createState() => _CustomTextFeildState();
-}
-
-class _CustomTextFeildState extends State<CustomTextFeild> {
-  bool _isFocused = false;
-
-  bool _passwordVisible = false;
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("data"),
-      ),
-      body: Column(children: [
-        SizedBox(
-          height: Sizer().screenHeight(context) * 0.25,
-          width: Sizer().screenWidth(context) * 0.85,
-          child: TextField(
-            decoration: InputDecoration(
-              suffixIcon: widget.isShowPassIcon
-                  ? IconButton(
-                      icon: Icon(_passwordVisible ? Icons.visibility_outlined : Icons.visibility_off, color: AppColors().textTitleColor),
-                      onPressed: () {
-                        setState(() {
-                          _passwordVisible = !_passwordVisible;
-                        });
-                      },
-                    )
-                  : null,
-              filled: true,
-              fillColor: AppColors().inactiveButtonColor,
-              hintText: widget.lebelText,
-              hintStyle: TextStyle(color: AppColors().textSubtitleColor, fontSize: 14, fontWeight: FontWeight.w400),
-              border: _isFocused
-                  ? OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: AppColors().borderColor, width: 0.4),
-                    )
-                  : OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors().bgColor,
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: Sizer().screenWidth(context) * 0.03, vertical: Sizer().screenHeight(context) * 0.03),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: Sizer().screenHeight(context) * 0.015),
+                const Center(child: CredentialPageCustomTopSection()),
+                SizedBox(height: Sizer().screenHeight(context) * 0.015),
+                CustomCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const CustomPageTitle(
+                        title: 'Create an Account',
+                        subTitle: 'Account creation process...',
+                      ),
+                      SizedBox(height: Sizer().screenHeight(context) * 0.05),
+                      Text(
+                        'Full Name',
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors().textTitleColor),
+                      ),
+                      SizedBox(height: Sizer().screenHeight(context) * 0.01),
+                      CustomTextField(
+                        isShowPassIcon: false,
+                        labelText: 'Enter your full name...',
+                        passwordVisible: false,
+                      ),
+                      SizedBox(height: Sizer().screenHeight(context) * 0.02),
+                      Text(
+                        'Email Address',
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors().textTitleColor),
+                      ),
+                      SizedBox(height: Sizer().screenHeight(context) * 0.01),
+                      CustomTextField(
+                        isShowPassIcon: false,
+                        labelText: 'Enter your email...',
+                        passwordVisible: false,
+                      ),
+                      SizedBox(height: Sizer().screenHeight(context) * 0.02),
+                      Text(
+                        'Password',
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors().textTitleColor),
+                      ),
+                      SizedBox(height: Sizer().screenHeight(context) * 0.01),
+                      CustomTextField(
+                        isShowPassIcon: true,
+                        labelText: 'Enter your password...',
+                        passwordVisible: true,
+                      ),
+                      SizedBox(height: Sizer().screenHeight(context) * 0.02),
+                      Text(
+                        'Confirm Password',
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors().textTitleColor),
+                      ),
+                      SizedBox(height: Sizer().screenHeight(context) * 0.01),
+                      CustomTextField(
+                        isShowPassIcon: true,
+                        labelText: 'Enter your password...',
+                        passwordVisible: true,
+                      ),
+                      SizedBox(height: Sizer().screenHeight(context) * 0.02),
+                      Row(
+                        children: [
+                          Text(
+                            'Referral Code',
+                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors().textTitleColor),
+                          ),
+                          SizedBox(width: Sizer().screenWidth(context) * 0.01),
+                          Text(
+                            'Optional',
+                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: AppColors().textSubtitleColor),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: Sizer().screenHeight(context) * 0.01),
+                      CustomTextField(
+                        isShowPassIcon: false,
+                        labelText: 'Enter your referral code...',
+                        passwordVisible: false,
+                      ),
+                      SizedBox(height: Sizer().screenHeight(context) * 0.05),
+                      CustomButton(
+                        bgColor: AppColors().buttonColor,
+                        title: 'Sign up',
+                        titleColor: AppColors().bgColor,
+                      ),
+                      SizedBox(height: Sizer().screenHeight(context) * 0.03),
+                      Align(
+                        alignment: Alignment.center,
+                        child: CustomRichText(
+                          text1: 'Already have account? ',
+                          text2: 'Login now',
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInScreen()));
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
             ),
-            onTap: () {
-              setState(() {
-                _isFocused = true;
-              });
-            },
-            autofocus: false,
           ),
         ),
-      ]),
+      ),
     );
   }
 }

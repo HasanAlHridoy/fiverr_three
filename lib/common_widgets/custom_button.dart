@@ -23,6 +23,7 @@ class CustomButton extends StatelessWidget {
       onPressed: () {},
       style: ElevatedButton.styleFrom(
         backgroundColor: bgColor,
+        elevation: 0,
         fixedSize: Size(Sizer().screenWidth(context), 50),
         side: hasBorder == true ? BorderSide(width: 0.5, color: AppColors().borderColor) : BorderSide.none,
       ),
