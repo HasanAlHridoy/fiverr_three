@@ -103,6 +103,7 @@ class SignUpScreen extends StatelessWidget {
                         bgColor: AppColors().buttonColor,
                         title: 'Sign up',
                         titleColor: AppColors().bgColor,
+                        onTap: () {},
                       ),
                       SizedBox(height: Sizer().screenHeight(context) * 0.03),
                       Align(

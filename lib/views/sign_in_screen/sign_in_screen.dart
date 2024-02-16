@@ -78,6 +78,7 @@ class SignInScreen extends StatelessWidget {
                           bgColor: AppColors().buttonColor,
                           title: 'Sign in',
                           titleColor: AppColors().bgColor,
+                          onTap: () {},
                         ),
                         SizedBox(height: Sizer().screenHeight(context) * 0.03),
                         Align(

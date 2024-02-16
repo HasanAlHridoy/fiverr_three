@@ -80,6 +80,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           bgColor: isActiveButton == true ? AppColors().buttonColor : AppColors().inactiveButtonColor,
                           title: 'Continue',
                           titleColor: isActiveButton == true ? AppColors().bgColor : AppColors().inactiveTextButtonColor,
+                          onTap: () {},
                         ),
                         SizedBox(height: Sizer().screenHeight(context) * 0.02),
                         InkWell(

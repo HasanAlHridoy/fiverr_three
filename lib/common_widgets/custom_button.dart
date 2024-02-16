@@ -8,6 +8,7 @@ class CustomButton extends StatelessWidget {
   final bool hasBorder;
   final String title;
   final Color titleColor;
+  final Function() onTap;
 
   const CustomButton({
     super.key,
@@ -15,12 +16,13 @@ class CustomButton extends StatelessWidget {
     this.hasBorder = false,
     required this.title,
     required this.titleColor,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onTap,
       style: ElevatedButton.styleFrom(
         backgroundColor: bgColor,
         elevation: 0,
